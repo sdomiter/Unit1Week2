@@ -45,43 +45,43 @@ function cities(){
     addColumns(cityPop);
     addEvents();
 };
-
+//function to create new column  
 function addColumns(cityPop){
-    
+    //calls each tr element based on function
     $('tr').each(function(i){
 
     	if (i == 0){
-
-    		$(this).apend('<th>City Size</th>');
+			// If i = 0 appends this to city size
+    		$(this).append('<th>City Size</th>');
     	} else {
-
+			// If not places in citysize variable
     		var citySize;
-
+			// Labels cities based on population. 
     		if (cityPop[i-1].population < 100000){
     			citySize = 'Small';
 
     		} else if (cityPop[i-1].population < 500000){
-    			citysize = 'Medium';
+    			citySize = 'Medium';
 
     		} else {
     			citySize = 'Large';
     		};
-
-    		$this.append('<td' + citySize + '</td>');
+			//Adds city size if applicable
+    		$(this).append('<td' + citySize + '</td>');
     	};
     });
 };
-
+// Add events function called
 function addEvents(){
-
-	$('#table').mouseover(function(){
+	//Mouse over function created, calls on table
+	$('#table').mouseover(() => {
 		
 		var color = "rgb(";
-
+		//Loop to determine style of table and size of clickable area.  
 		for (var i=0; i<3; i++){
 
 			var random = Math.round(Math.random() * 255);
-
+			//Styling
 			color += "random";
 
 			if (i<2){
@@ -89,11 +89,12 @@ function addEvents(){
 			
 			} else {
 				color += ")";
+			}
 		};
 
 		$(this).css('color', color);
 	});
-
+	//Creates message if area clicked
 	function clickme(){
 
 		alert('Hey, you clicked me!');
