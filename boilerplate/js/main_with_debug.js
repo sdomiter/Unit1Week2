@@ -1,6 +1,7 @@
 //initialize function called when the script loads
 function initialize(){
 	cities();
+	debugAjax();
 };
 
 //function to create a table with cities and their populations
@@ -47,7 +48,7 @@ function cities(){
 };
 //function to create new column  
 function addColumns(cityPop){
-    //calls each tr element based on function
+    //calls each row element based on function
     $('tr').each(function(i){
 
     	if (i == 0){
@@ -67,13 +68,13 @@ function addColumns(cityPop){
     			citySize = 'Large';
     		};
 			//Adds city size if applicable
-    		$(this).append('<td' + citySize + '</td>');
+    		$(this).append('<td>' + citySize + '</td>');
     	};
     });
 };
 // Add events function called
 function addEvents(){
-	//Mouse over function created, calls on table
+	//Mouse over function created, callable
 	$('#table').mouseover(() => {
 		
 		var color = "rgb(";
@@ -105,3 +106,23 @@ function addEvents(){
 
 //call the initialize function when the document has loaded
 $(document).ready(initialize);
+
+function debugCallback(mydata){
+	
+	//$(mydiv).append('GeoJSON data: ' + JSON.stringify(mydata));
+	$(mydiv).append('<br>GeoJSON data:<br>' + JSON.stringify(mydata));
+};
+
+function debugAjax(){
+	
+	var mydata;
+
+	$.ajax("data/MegaCities.geojson", {
+		dataType: "json",
+		success: function(response){
+			mydata = response
+			debugCallback(mydata);
+		}
+	});
+};
+
